@@ -78,7 +78,7 @@ Em /TP4-APP, rode
 
 Em /TP4-BD, rode
 ```bash
-  docker build -t banco-postgres .
+  docker build -t banco-postgres:1.0 .
 ```
 
 ### Deploy do cluster
