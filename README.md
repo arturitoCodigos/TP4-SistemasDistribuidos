@@ -121,3 +121,10 @@ Para acessar os logs de um desses pods, basta pegar um dos nomes obtidos atravé
 ```bash
   kubectl logs 'nome_do_pod'
 ```
+
+## Desligando o cluster
+O K8s é realmente tolerante a falhas. Tente desligar container por container (e falhe como nós falhamos).
+
+Para desligar, dentro do Docker Desktop, volte a aba onde você ligou o Kubernetes. Neste local você pode **desmarcar a caixinha de *enable kubernetes*.**
+
+Se quiser apagar o cluster, clique antes no botão vermelho ***Reset Kubernetes Cluster*.**
