@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server-app-deployment
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: web-server-app
+  template:
+    metadata:
+      labels:
+        app: web-server-app
+    spec:
+      containers:
+        - name: web-server-app
+          image: aplicacao-web-server:1.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_HOST
+              value: postgres-service
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              value: "root"
+            - name: DB_NAME
+              value: "empresa"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  labels:
+    app: banco-de-dados-postgres
+spec:
+  selector:
+    app: banco-de-dados-postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres-pod
+  labels:
+    app: banco-de-dados-postgres
+spec:
+  containers:
+    - name: banco-de-dados-postgres
+      image: banco-postgres:1.0
+      ports:
+        - containerPort: 5432

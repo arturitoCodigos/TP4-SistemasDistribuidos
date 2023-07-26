@@ -1,0 +1,2 @@
+kubectl apply -f application.yaml
+kubectl expose deployment web-server-app-deployment --type=LoadBalancer --port=3000
